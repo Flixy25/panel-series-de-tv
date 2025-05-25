@@ -1,0 +1,409 @@
+
+<!DOCTYPE html>  <html lang="es">  
+<head>  
+  <meta charset="UTF-8">  
+  <title>FS</title>  
+  <style>  
+    /* Imagen de fondo y overlay oscuro */  
+    body {  
+      margin: 0;  
+      padding: 0;  
+      font-family: Arial, sans-serif;  
+      background: url('http') no-repeat center center fixed;  
+      background-size: cover;  
+      position: relative;  
+    }  body::before {  
+  content: '';  
+  position: fixed;  
+  top: 0;  
+  left: 0;  
+  width: 100%;  
+  height: 100%;  
+  background: rgba(0, 0, 0, 6.8);  
+  backdrop-filter: blur(3px); /* Aplica el filtro de desenfoque solo al fondo */  
+  z-index: -1;  
+}  
+
+.glass {  
+  /* Se eliminó el fondo de esta sección */  
+  border-radius: 12px;  
+  padding: 20px;  
+  margin: 0px auto;  
+  max-width: 1000px;  
+  
+  color: #fff;  
+}  
+
+h1 {
+
+color: #fff;
+font-size: 1.50rem;
+}
+
+.botones-container {  
+  display: flex;  
+  justify-content: flex-start;  
+  gap: 10px;  
+  margin-bottom: 20px;  
+  overflow-x: auto;  
+  padding-bottom: 10px;  
+}  
+
+.botones {  
+  display: flex;  
+  gap: 10px;  
+}
+
+.button {
+padding: 12px 30px;
+font-size: 16px;
+background: linear-gradient(45deg, #ff0000, #ff9900);
+color: white;
+border: none;
+border-radius: 5px;
+cursor: pointer;
+white-space: nowrap;
+transition: background 0.3s ease;
+}
+
+.button:hover {
+background: linear-gradient(45deg, #cc0000, #ff6600);
+}
+
+.capitulos {  
+  display: none;  
+  margin-top: 20px;  
+}  
+
+.capitulos h3 {  
+  text-align: left;  
+}  
+
+.capitulos ul {  
+  list-style-type: none;  
+  padding: 0;  
+  margin: 0;  
+  display: flex;  
+  flex-direction: column;  
+  gap: 10px;  
+}  
+
+.capitulos li {  
+  background: rgba(255, 255, 255, 0.15);  
+  color: white;  
+  padding: 10px;  
+  border-radius: 4px;  
+  box-shadow: 0 0 5px rgba(0,0,0,0.2);  
+  cursor: pointer;  
+}  
+
+.capitulos li:hover {  
+  background-color: rgba(255, 255, 255, 0.25);  
+}  
+
+@media (min-width: 1024px) {  
+  .capitulos ul {  
+    flex-direction: row;  
+    flex-wrap: wrap;  
+    justify-content: center;  
+    gap: 15px;  
+  }  
+
+  .capitulos li {  
+    flex: 1 1 calc(16.66% - 10px);  
+    max-width: 180px;  
+  }  
+}  
+
+@media (max-width: 1024px) {  
+  .capitulos ul {  
+    flex-direction: row;  
+    flex-wrap: wrap;  
+    justify-content: center;  
+    gap: 15px;  
+  }  
+
+  .capitulos li {  
+    flex: 1 1 calc(5% - 1px);  
+    max-width: 180px;  
+  }  
+}  
+
+@media (max-width: 480px) {    
+  .button {  
+    padding: 10px 20px;  
+    font-size: 14px;  
+  }  
+
+  .botones-container {  
+    -webkit-overflow-scrolling: touch;  
+    overflow-x: auto;  
+    white-space: nowrap;  
+  }  
+}  
+
+/* Modal pantalla completa */  
+.modal {  
+  display: none;  
+  position: fixed;  
+  z-index: 9999;  
+  left: 0;  
+  top: 0;  
+  width: 100%;  
+  height: 100%;  
+  background-color: rgba(0, 0, 0, 0.9);  
+}  
+
+.modal-content.full {  
+  width: 100%;  
+  height: 100%;  
+  margin: 0;  
+  border: none;  
+  padding: 0;  
+  border-radius: 0;  
+  position: relative;  
+}  
+
+.modal-content.full iframe {
+
+width: 100%;
+height: 100%;
+border: none;
+background-color: black;
+}
+
+.modal-content.full .close {  
+  position: absolute;  
+  top: 10px;  
+  right: 20px;  
+  color: white;  
+  font-size: 32px;  
+  font-weight: bold;  
+  cursor: pointer;  
+  z-index: 10;  
+}  
+
+.modal-content.full .close:hover {  
+  color: #f00;  
+}
+
+  </style>  
+</head>  
+<body>  
+  <div class="glass">  
+      <h1>El Chavo del Ocho (1973)</h1>  
+  
+<p class="describe">  
+    Disfruta de esta derie totalmente gratis y en HD 
+</p>  
+
+
+<div class="botones-container">  
+  <div class="botones">  
+      
+<button class="button" onclick="mostrarCapitulos('t1')">T1
+</button>  
+    
+<button class="button" onclick="mostrarCapitulos('t2')">T2
+</button>  
+    
+<button class="button" onclick="mostrarCapitulos('t3')">T3
+</button>  
+      
+<button class="button" onclick="mostrarCapitulos('t4')">T4
+</button>  
+      
+<button class="button" onclick="mostrarCapitulos('t5')">T5</button>  
+      
+<button class="button" onclick="mostrarCapitulos('t6')">T6</button>  
+      
+<button class="button" onclick="mostrarCapitulos('t7')">T7</button>  
+      
+      
+      
+      
+      
+      
+  </div>  
+</div>  
+
+
+
+<div id="t1" class="capitulos">  
+    <h3>T1</h3>
+<ul>       
+    
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/naqtnz9jvn4a.html')">C1</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/5q75a92i7gye.html')">C2</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/ew5m7ltedgke.html')">C3</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/9toadoi6zse0.html')">C4</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/y2lzb7ggm042.html')">C5</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/ezy50fypjcxg.html')">C6</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/4itslzmzr5lw.html')">C7</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/ryamsrj5kflx.html')">C8</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/6tn3nqaqkph6.html')">C9</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/2ev6d3ifzvuu.html')">C10</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/aaxdiqzauw0s.html')">C11</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/esn4u3xkl3e4.html')">C12</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/w7xmrxfmnpjf.html')">C13</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/0x1xw2jymig2.html')">C14</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/lhe46opkfo3a.html')">C15</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/jl6u24bn6fcz.html')">C16</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/une5x3wf9azt.html')">C17</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/hjunra891oqz.html')">C18</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/alacejvtvnkx.html')">C19</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/3d6hnnirj0n6.html')">C20</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/690bgdhk9zql.html')">C21</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/9eqhx58ngqr8.html')">C22</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/vt3brgcj6ezn.html')">C23</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/bquwc07fur4l.html')">C24</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/o9j3jpwbt8cv.html')">C25</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/hjqtc7gdoj1g.html')">C26</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/9w632r1ofzw6.html')">C27</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/8vafag14rrov.html')">C28</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/4qe1x53d4csh.html')">C29</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/wo838m96tod3.html')">C30</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/bhb6mzdmi93c.html')">C31</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/c8o8728bhkcf.html')">C32</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/bek3g41yqyv3.html')">C33</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/h5wykk706dp4.html')">C34</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/bmw151cl1229.html')">C35</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/2d0e6xuou2jp.html')">C36</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/2vi5375bowuk.html')">C37</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/2hv44x2gsc3k.html')">C38</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/9nbv3ssezv2e.html')">C39</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/tebpt5ivvmjd.html')">C40</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/7qk6tkhxnm7i.html')">C41</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/uyqyoo0p4f3s.html')">C42</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/pkaj3adeqdoh.html')">C43</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/4fu7bru4f408.html')">C44</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/t4qhudh7moye.html')">C45</li>
+
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/1sgqfrfuyfv2.html')">C46</li>
+
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/fq8emxc2satw.html')">C47</li>
+
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/cs814mp3rn1d.html')">C48</li>
+
+
+
+</ul>  
+</div>  
+
+
+
+<div id="t2" class="capitulos">  
+<h3>T2</h3>  
+<ul>  
+      
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/jzoqn5dg59v2.html')">C1</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/0sfgwrrqoysp.html')">C2</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/xx4yoauusrmn.html')">C3</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/5ulgdjbamg69.html')">C4</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/8hi0fjcmrm49.html')">C5</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/obq6lt09sui4.html')">C6</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/yq7y0favbq3a.html')">C7</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/aoviwjc6mzbz.html')">C8</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/ryxcdfy2czmf.html')">C9</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/k6ujxsxr4i3u.html')">C10</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/ky7tw049mcev.html')">C11</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/lc7uwxafahuv.html')">C12</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/x78luwb7c940.html')">C13</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/dw36keejtz0o.html')">C14</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/h425vgkdntaf.html')">C15</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/r57emkf9hepm.html')">C16</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/hkk88ahwhate.html')">C17</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/aia7s7n3nq11.html')">C18</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/fcjdp6a3ea88.html')">C19</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/14g5rkha6ved.html')">C20</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/rxyg5t53xvov.html')">C21</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/6y72fxojoqpu.html')">C22</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/lpnj2ech297f.html')">C23</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/b1w06xlwz562.html')">C24</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/zcajcknx4u2i.html')">C25</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/rk76jy94tyvv.html')">C26</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/jbq40vtitke2.html')">C27</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/e34n98u69o1y.html')">C28</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/0rkvkpghy2f0.html')">C29</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/ltbup3e7eivd.html')">C30</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/br8onr2frqni.html')">C31</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/npsuqyv8i0xw.html')">C32</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/9zqx1kek1fjo.html')">C33</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/3frh1ergtpdu.html')">C34</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/kbsmxb9kp27b.html')">C35</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/yu2lc1v8t70z.html')">C36</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/gb3sen8om75l.html')">C37</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/yx4zu47ndsh6.html')">C38</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/kw03cehrbpyb.html')">C39</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/qyoqpyfksj8s.html')">C40</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/eqd5lrmwni5w.html')">C41</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/zjuhxfcwt35v.html')">C42</li>
+ 
+      
+</ul>  
+</div>  
+  
+  
+  
+<div id="t3" class="capitulos">  
+<h3>T3</h3>  
+<ul>  
+      
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/dki3rgqxtd2p.html')">C1</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/s9c1q0y3t401.html')">C2</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/qqqamshnltl7.html')">C3</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/znc7eo9ugyn5.html')">C4</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/7vuxoi0nhbub.html')">C5</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/b40t7wf3w1xn.html')">C6</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/1s6dmeetqib3.html')">C7</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/lkmewuj612co.html')">C8</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/lkmewuj612co.html')">C9</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/6hns2mgxa4qu.html')">C10</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/ze3a8x9vtmkt.html')">C11</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/0wpirqg8ym4i.html')">C12</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/vbscnng7eaxu.html')">C13</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/42igv5wi1elq.html')">C14</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/u8svw7zrn8pm.html')">C15</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/py7hm80s79m4.html')">C16</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/8v1rwf90dkwr.html')">C17</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/tg2e74xbs2ku.html')">C18</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/o6kr4rb9d006.html')">C19</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/yvzhjpgk7q8e.html')">C20</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/e4gckt9vlc6r.html')">C21</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/re8ieuvoyavp.html')">C22</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/n98qlwvao2gf.html')">C23</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/jwkytcyrykd4.html')">C24</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/nsjd7g2fzk1j.html')">C25</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/lk1lpifu2eky.html')">C26</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/g83v69wjdzw6.html')">C27</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/9bia5uxdu4wv.html')">C28</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/r9xrkcz3mk7p.html')">C29</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/xt1jb6pca6fx.html')">C30</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/n0iu1on6evy2.html')">C31</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/vufv3vm6isxe.html')">C32</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/faabac88a2oq.html')">C33</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/jba1727f67ct.html')">C34</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/tog7zjmucd50.html')">C35</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/ykmtnf1gawpv.html')">C36</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/o0cw7qph828v.html')">C37</li>
+ 
+      
+      
+</ul>  
+</div>  
+  
+  
+<div id="t4" class="capitulos">  
+<h3>T4</h3>  
+<ul>  
+      
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/kfde1vvx1ezj.html')">C1</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/sufc2vwj3ebw.html')">C2</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/8gjfdcoxioag.html')">C3</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/b5g97ncs8srn.html')">C4</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/25zdvcuesuon.html')">C5</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/301r9x48so57.html')">C6</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/0mntqlhj90hf.html')">C7</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/r2oxqc79k9s7.html')">C8</li>
+<li onclick="abrirModal('https://multistream-ebd.pages.dev/?v=https://supervideo.tv/nbkkmkddjk1g.html')">C9</li>
+<li onclick="abri
